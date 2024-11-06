@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>统计与验证</title>
+    <title>点击得分游戏</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+        #game {
+            text-align: center;
+        }
+        button {
+            font-size: 2em;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-
-<textarea rows="6" cols="40" id="txt">
-SDF;SDFD,SDFSDF;1323;SDF sdf eee</textarea>
-<input type="button" value="统计" onclick="tongji();"/><br/>
-<textarea rows="6" cols="40" id="txt1"> 
-</textarea>
-<br/><hr>
-email：<input type="text" id="txt3" />
-<input type="button" value="验证" onclick="yanzheng();"/>
-
+    <div id="game">
+        <h1>点击得分游戏</h1>
+        <p>当前分数: <span id="score">0</span></p>
+        <button onclick="increaseScore()">点击我！</button>
+    </div>
+    <script>
+        let score = 0;
+        function increaseScore() {
+            score++;
+            document.getElementById('score').textContent = score;
+        }
+    </script>
 </body>
-<script language="javascript">
-   function tongji(){
-       var sourceStr = document.getElementById("txt").value;
-
-       // 统计字母数
-       var regex1 = /[^a-zA-Z]/g; //匹配所有非字母字符
-       var letterStr = sourceStr.replace(regex1, '');
-       var s = letterStr + " 字母数为：" + letterStr.length;
-
-       // 统计数字数
-       var regex2 = /[^0-9]/g; //匹配所有非数字字符
-       var numStr = sourceStr.replace(regex2, '');
-       s = s + "\n" + numStr + " 数字数为：" + numStr.length;
-
-       // 统计单词数
-       var regex3 = /[\s\W]{1,}/; // 用空白字符或非字母数字字符作为分隔符
-       var wordArray = sourceStr.split(regex3);
-       s = s + "\n" + wordArray + " 单词数:" + wordArray.length;
-
-       // 将结果写入到第二个文本域中
-       document.getElementById("txt1").innerHTML = s;             
-    }
-
-    function yanzheng(){
-       var email = document.getElementById("txt3").value;
-       // 正则表达式验证Email
-       var regex4 = /^\w+@\w+\.[a-z]+(\.[a-z]+)?$/;
-       if (regex4.test(email))
-           alert("符合email格式要求");
-       else
-           alert("不符合email格式要求");
-    }
-</script>
 </html>
